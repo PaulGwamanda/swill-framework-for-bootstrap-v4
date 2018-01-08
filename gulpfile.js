@@ -17,10 +17,9 @@ var paths = {
         './src/sass/styles.scss'
     ],
     libraryJs: [
-        './node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
+        './node_modules/bootstrap/dist/js/bootstrap.min.js',
         './node_modules/jquery/dist/jquery.js',
         './node_modules/wowjs/dist/wow.min.js'
-
     ],
     scriptJs: [
         './src/js/**/*.js'
@@ -30,10 +29,6 @@ var paths = {
     ],
     images: [
         './src/images/**/*'
-    ],
-    fonts: [
-        './node_modules/bootstrap-sass/assets/fonts/**/**.*',
-        './src/fonts/**/*'
     ]
 };
 /**
@@ -95,11 +90,13 @@ gulp.task('images', function(){
 /**
  * Copy the fonts
  **/
+/**
 gulp.task('fonts', function(){
     gulp.src(paths.fonts)
         .pipe(gulp.dest('./output/fonts/')
     );
 });
+**/
 
 /**
  * Get animate.css + wow.js
@@ -176,7 +173,6 @@ gulp.task('default', function(callback){
         'modules',
         'bootstrap',
         'scripts',
-        'fonts',
         'fontAwesome',
         'images',
         'styles',
