@@ -1,16 +1,15 @@
 {
   "name": "swill-frontend-developer-kit",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A lightweight flexible and powerful nodejs gulp bower framework for developing web applications and frontend projects quickly and simply",
   "author": "Paul Gwamanda",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/PaulGwamanda/swill"
+    "url": "https://github.com/PaulGwamanda/swill-2"
   },
   "dependencies": {
     "bootstrap": "4.0.0-alpha.6",
-    "bootstrap-sass": "3.3.7",
     "browser-sync": "2.18.5",
     "del": "2.2.2",
     "font-awesome": "^4.7.0",
