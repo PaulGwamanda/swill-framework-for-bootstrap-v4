@@ -18,8 +18,9 @@ var paths = {
     ],
     libraryJs: [
         './node_modules/bootstrap/dist/js/bootstrap.min.js',
-        './node_modules/jquery/dist/jquery.js',
-        './node_modules/wowjs/dist/wow.min.js'
+        './node_modules/jquery/dist/jquery.min.js',
+        './node_modules/wowjs/dist/wow.min.js',
+        './node_modules/tether/dist/js/tether.min.js'
     ],
     scriptJs: [
         './src/js/**/*.js'
