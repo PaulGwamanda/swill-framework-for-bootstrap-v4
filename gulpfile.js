@@ -1,0 +1,187 @@
+'use strict';
+
+var gulp = require('gulp');
+var sass = require('gulp-sass');
+var watch = require('gulp-watch');
+var runSequence = require('run-sequence');
+var del = require('del');
+var browserSync = require('browser-sync').create();
+var fileinclude = require('gulp-file-include');
+var rename = require('gulp-rename');
+
+var paths = {
+    bootstrap: [
+        './src/sass/bootstrap.scss'
+    ],
+    styles: [
+        './src/sass/styles.scss'
+    ],
+    libraryJs: [
+        './node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
+        './node_modules/jquery/dist/jquery.js',
+        './node_modules/wowjs/dist/wow.min.js'
+
+    ],
+    scriptJs: [
+        './src/js/**/*.js'
+    ],
+    templates:[
+        './src/html/'
+    ],
+    images: [
+        './src/images/**/*'
+    ],
+    fonts: [
+        './node_modules/bootstrap-sass/assets/fonts/**/**.*',
+        './src/fonts/**/*'
+    ]
+};
+/**
+ * Compiles the project style.css file
+ */
+
+gulp.task('styles', function () {
+    return gulp.src('./src/sass/styles.scss')
+        .pipe(sass({outputStyle: 'expanded', sourceComments:false})
+            .on('error', sass.logError))
+        .pipe(rename("styles.css"))
+        .pipe(gulp.dest('output/css'));
+});
+
+gulp.task('bootstrap', function () {
+    return gulp.src('./src/sass/bootstrap.scss')
+        .pipe(sass({outputStyle: 'expanded', sourceComments:false})
+            .on('error', sass.logError))
+        .pipe(rename("bootstrap.css"))
+        .pipe(gulp.dest('output/css'));
+});
+
+/**
+ * browser-sync
+ */
+gulp.task('browser-sync', function(){
+    browserSync.init({server: {baseDir: "./output"},files:['./output/**/*.html']});
+});
+/**
+ * Compile the Javascript @TODO: optimize
+ */
+gulp.task('scripts', function(){
+    gulp.src(paths.libraryJs)
+        .pipe(gulp.dest('./output/js/'));
+    gulp.src(paths.scriptJs)
+        .pipe(gulp.dest('./output/js/'));
+});
+
+/**
+ * Grab libraries from the modules directory and output them in their relevant paths
+ **/
+gulp.task('modules', function () {
+    gulp.src(['./node_modules/wowjs/css/libs/animate.css'])
+        .pipe(gulp.dest('./src/modules/animate.css/'));
+
+    gulp.src(['./src/modules/animate.css'])
+        .pipe(gulp.dest('./output/modules'));
+});
+
+/**
+ * Copy the images
+ */
+gulp.task('images', function(){
+    gulp.src(paths.images)
+        .pipe(gulp.dest('./output/images/')
+    );
+});
+
+/**
+ * Copy the fonts
+ **/
+gulp.task('fonts', function(){
+    gulp.src(paths.fonts)
+        .pipe(gulp.dest('./output/fonts/')
+    );
+});
+
+/**
+ * Get animate.css + wow.js
+ */
+gulp.task('animateCSS', function(){
+    gulp.src(['./node_modules/wowjs/css/libs/*'])
+        .pipe(gulp.dest('./src/modules/')
+    );
+    gulp.src(['./src/modules/animate.css/animate.css'])
+        .pipe(gulp.dest('./output/modules/animate.css/animate.css'));
+});
+
+/** Copy the font awesome library
+ * @@todo Optimise so less and sass folder is excluded in production
+ * **/
+gulp.task('fontAwesome', function () {
+    // Grab only the css and fonts file
+    gulp.src(['./node_modules/font-awesome/**/*', '!./node_modules/font-awesome/scss/'])
+        .pipe(gulp.dest('./src/modules/font-awesome/')
+    );
+    gulp.src(['./src/modules/**/*.*', '!./src/font-awesome/less/**.*', '!./src/font-awesome/scss/**.*'])
+        .pipe(gulp.dest('./output/modules/')
+    );
+    gulp.src('./src/modules/font-awesome/css/font-awesome.min.css')
+        .pipe(gulp.dest('./output/modules/font-awesome/css/')
+    );
+    gulp.src('./src/modules/font-awesome/fonts/**.*')
+        .pipe(gulp.dest('./output/modules/font-awesome/fonts/')
+    );
+});
+
+/**
+ * Clean existing html files
+ */
+gulp.task('clean', function(){
+    del(['./output']);
+});
+
+/**
+ * Build the HTML
+ */
+gulp.task('fileinclude', function(){
+    return gulp.src(paths.templates+'**/*')
+        .pipe(fileinclude('@@'))
+        .pipe(gulp.dest('./output')
+    );
+});
+
+/** ..Then remove includes folder **/
+gulp.task('del-includes', function(){
+    del(['./output/includes']);
+});
+
+/**
+ * Watch files and execute tasks
+ */
+gulp.task('default', function(callback){
+
+    gulp.watch('./src/sass/**/*.scss', function(){
+        gulp.start('styles');
+    });
+    gulp.watch('./src/js/**/*.js', function(){
+        gulp.start('scripts');
+    });
+    gulp.watch('./src/images/**/*', function(){
+        gulp.start('images');
+    });
+    gulp.watch('./src/html/**/*.html', function () {
+        gulp.start('fileinclude')
+    });
+
+    runSequence(
+        'clean',
+        'modules',
+        'bootstrap',
+        'scripts',
+        'fonts',
+        'fontAwesome',
+        'images',
+        'styles',
+        'fileinclude',
+        'del-includes',
+        'browser-sync',
+    callback);
+});

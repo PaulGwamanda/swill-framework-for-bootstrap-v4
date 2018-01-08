@@ -1,0 +1,25 @@
+
+$sample-margin: 10px 5px !default;
+$sample-border: 1px solid #000;
+$sample-background: #efefef;
+$sample-padding: 10px 5px !default;
+$sample-font-size: 12px !default;
+$sample-color: #666 !default;
+
+.sample-component {
+  display: block;
+  position: relative;
+  margin: $sample-margin;
+  border: $sample-border;
+  background: $sample-background;
+  padding: $sample-padding;
+  font-size: $sample-font-size;
+  color: $sample-color;
+
+  &:before {}
+  &:after {}
+
+  .child {
+
+  }
+}
