@@ -4,7 +4,7 @@ A lightend development framework i use for frontend builds - updating from swill
 ```
 Using
 ---
-```bash
+
 bootstrap
 browser-sync
 del
@@ -24,7 +24,6 @@ run-sequence
 How to install
 ---
 
-```bash
 $ npm install
 $ gulp
 ```
