@@ -12,7 +12,7 @@ $ gulp
 ```
 Using
 ---
-    "bootstrap": "4.0.0-alpha.6",
+    "bootstrap": "4.1.2",
     "browser-sync": "2.18.5",
     "del": "2.2.2",
     "font-awesome": "^4.7.0",
