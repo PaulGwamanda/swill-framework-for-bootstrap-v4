@@ -28,6 +28,9 @@ var paths = {
     templates:[
         './src/html/'
     ],
+    fonts:[
+        './src/fonts/'
+    ],
     images: [
         './src/images/**/*'
     ]
@@ -91,13 +94,11 @@ gulp.task('images', function(){
 /**
  * Copy the fonts
  **/
-/**
 gulp.task('fonts', function(){
     gulp.src(paths.fonts)
         .pipe(gulp.dest('./output/fonts/')
     );
 });
-**/
 
 /**
  * Get animate.css + wow.js
