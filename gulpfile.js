@@ -29,7 +29,7 @@ var paths = {
         './src/html/'
     ],
     fonts:[
-        './src/fonts/'
+        './src/fonts/*'
     ],
     images: [
         './src/images/**/*'
@@ -176,6 +176,7 @@ gulp.task('default', function(callback){
         'bootstrap',
         'scripts',
         'fontAwesome',
+        'fonts',
         'images',
         'styles',
         'fileinclude',
