@@ -17,7 +17,7 @@ var paths = {
         './src/sass/styles.scss'
     ],
     libraryJs: [
-        './node_modules/bootstrap/dist/js/bootstrap.min.js',
+        './node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
         './node_modules/jquery/dist/jquery.min.js',
         './node_modules/wowjs/dist/wow.min.js',
         './node_modules/tether/dist/js/tether.min.js'
@@ -80,6 +80,7 @@ gulp.task('modules', function () {
 
     gulp.src(['./src/modules/animate.css'])
         .pipe(gulp.dest('./output/modules'));
+
 });
 
 /**
@@ -156,6 +157,10 @@ gulp.task('del-includes', function(){
  * Watch files and execute tasks
  */
 gulp.task('default', function(callback){
+
+    gulp.watch('./src/sass/*.scss', function(){
+        gulp.start('bootstrap');
+    });
 
     gulp.watch('./src/sass/**/*.scss', function(){
         gulp.start('styles');
