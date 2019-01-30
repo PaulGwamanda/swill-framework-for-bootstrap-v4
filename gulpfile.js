@@ -187,5 +187,5 @@ gulp.task('default', function(callback){
         'fileinclude',
         'del-includes',
         'browser-sync',
-    callback);
+        callback);
 });

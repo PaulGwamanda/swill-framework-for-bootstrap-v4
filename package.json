@@ -1,7 +1,7 @@
 {
   "name": "swill-frontend-developer-kit",
   "version": "2.0.0",
-  "description": "A lightweight flexible and powerful nodejs gulp bower framework for developing web applications and frontend projects quickly and simply",
+  "description": "A light bootstrap development boilerplate toolbox for frontend builds. It's modular and preloads common libraries, allowing for rapid frontend development and splits the dev and production directories for rapid deployment and testing. It uses scss for stylesheets and allows for overriding bootstraps' scss import modules while running browessync for cross browser platform checks.",
   "author": "Paul Gwamanda",
   "license": "MIT",
   "repository": {
