@@ -148,6 +148,17 @@ gulp.task('fileinclude', function(){
     );
 });
 
+
+/**
+ * Copy the videos
+ **/
+gulp.task('videos', function(){
+    gulp.src('./src/videos/**/*')
+        .pipe(gulp.dest('./output/videos/')
+    );
+});
+
+
 /** ..Then remove includes folder **/
 gulp.task('del-includes', function(){
     del(['./output/includes']);
@@ -171,6 +182,9 @@ gulp.task('default', function(callback){
     gulp.watch('./src/images/**/*', function(){
         gulp.start('images');
     });
+    gulp.watch('./src/videos/**/*', function(){
+        gulp.start('videos');
+    });
     gulp.watch('./src/html/**/*.html', function () {
         gulp.start('fileinclude')
     });
@@ -183,9 +197,10 @@ gulp.task('default', function(callback){
         'fontAwesome',
         'fonts',
         'images',
+        'videos',
         'styles',
-        'fileinclude',
         'del-includes',
         'browser-sync',
-        callback);
+        'fileinclude',
+    callback);
 });
