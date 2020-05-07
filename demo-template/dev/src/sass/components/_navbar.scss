@@ -1,0 +1,68 @@
+
+.navbar {
+  a.navbar-brand {
+    font-size: 2em;
+    font-weight: 600;
+    color: white;
+  }
+}
+
+.navbar {
+  @media (max-width: 992px){
+    background: #000;
+  }
+  ul.navbar-nav {
+    a {
+      -webkit-transition: ease 0.3s;
+      -moz-transition: ease 0.3s;
+      -ms-transition: ease 0.3s;
+      -o-transition: ease 0.3s;
+      transition: ease 0.3s;
+    }
+
+    a.nav-link {
+      font-size: 16px;
+      font-weight: 600;
+      color: white;
+    }
+
+    .nav-link:hover {
+      color: #cccccc;
+    }
+
+    li {
+      text-decoration: none;
+      letter-spacing: 0.15em;
+      display: inline-block;
+      padding: 5px 0;
+      position: relative;
+    }
+
+    a:after {
+      bottom: 0;
+      content: "";
+      display: block;
+      height: 1px;
+      left: 0;
+      position: absolute;
+      background: #fff;
+      transition: width 0.3s ease 0s, left 0.3s ease 0s;
+      width: 0;
+    }
+
+    li:hover {
+      a:after {
+        width: 100%;
+        left: 0;
+      }
+    }
+  }
+}
+
+.navbar-toggler:not(:disabled):not(.disabled){
+  background: black;
+}
+.navbar-toggler-icon{
+  background: url(../images/elements/burger.png) no-repeat center;
+  background-size: contain;
+}
