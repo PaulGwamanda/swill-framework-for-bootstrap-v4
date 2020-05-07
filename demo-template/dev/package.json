@@ -19,7 +19,7 @@
     "gulp-rename": "^1.4.0",
     "gulp-uglify": "^1.5.4",
     "gulp-watch": "^4.3.11",
-    "jquery": "^3.1.1",
+    "jquery": "^3.5.0",
     "run-sequence": "^1.2.2",
     "wowjs": "^1.1.3"
   },
